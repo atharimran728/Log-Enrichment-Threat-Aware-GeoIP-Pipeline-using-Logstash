@@ -36,9 +36,12 @@ Enriched events are written to both console (`rubydebug`) and `output.json` in J
 
 ```
 ├── docker-compose.yml # Docker setup for Logstash container
-├── logstash.conf # Pipeline configuration
-├── input.json # Raw IP list input
-├── output.json # Enriched output (auto-generated)
+├── pipeline/
+│ └── logstash.conf # Pipeline configuration
+├── logs/
+│ ├── input.json # Raw IP list input
+│ └── output.json # Enriched output (auto-generated)
+└── geoip/
 └── GeoLite2-City.mmdb # GeoIP database (MaxMind)
 ```
 
@@ -56,7 +59,7 @@ cd Log-Enrichment-Threat-Aware-GeoIP-Pipeline-using-Logstash
 
 Ensure you have the following:
 
-`input.json` - contains IPs to enrich
+`logs/input.json` - contains IPs to enrich
 Example:
 ```
 [
@@ -65,7 +68,7 @@ Example:
   {"source_ip": "185.220.101.4"}
 ]
 ```
-`GeoLite2-City.mmdb` - download [GeoLite2 City](https://github.com/P3TERX/GeoLite.mmdb?tab=readme-ov-file)
+`geoip/GeoLite2-City.mmdb` - download [GeoLite2 City](https://github.com/P3TERX/GeoLite.mmdb?tab=readme-ov-file)
 
 ### 3. Run Logstash via Docker Compose
 
@@ -76,13 +79,13 @@ docker-compose up
 This will:
 
 Spin up a Logstash container
-Load the pipeline from `logstash.conf`
-Enrich IPs from `input.json`
-Output enriched logs to `output.json`
+Load the pipeline from `pipeline/logstash.conf`
+Enrich IPs from `logs/input.json`
+Output enriched logs to `logs/output.json`
 
 ### 4. Check Results
 
-Once the process completes, view the enriched JSON - `output.json`.
+Once the process completes, view the enriched JSON - `logs/output.json`.
 
 ## Learning Objectives
 
