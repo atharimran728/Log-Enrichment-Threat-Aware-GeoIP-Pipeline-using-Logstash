@@ -1,0 +1,14 @@
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.12.1
+    container_name: logstash
+    volumes:
+      - ./pipeline:/usr/share/logstash/pipeline
+      - ./logs:/usr/share/logstash/logs
+      - ./geoip:/usr/share/logstash/geoip
+    command: ["-f", "/usr/share/logstash/pipeline/logstash.conf"]
+    stdin_open: true
+    tty: true
+    environment:
+      - "xpack.monitoring.enabled=false"
+      - "xpack.monitoring.elasticsearch.enabled=false"
