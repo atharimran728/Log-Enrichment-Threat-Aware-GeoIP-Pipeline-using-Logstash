@@ -42,7 +42,7 @@ Enriched events are written to both console (`rubydebug`) and `output.json` in J
 │ ├── input.json # Raw IP list input
 │ └── output.json # Enriched output (auto-generated)
 └── geoip/
-└── GeoLite2-City.mmdb # GeoIP database (MaxMind)
+  └── GeoLite2-City.mmdb # GeoIP database (MaxMind)
 ```
 
 ---
